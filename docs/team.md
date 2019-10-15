@@ -6,10 +6,11 @@ title:  Team
 # {{ page.title }}
 
 
-## Haosong Liu
-***UCI Net ID***: haosonl
+## USER 1
+***UCI Net ID***: ucinetid1
 
-## Hongming Yu
-***UCI Net ID***: hongminy
+## USER 2
+***UCI Net ID***: ucinetid2
 
-
+## USER 3
+***UCI Net ID***: ucinetid3
