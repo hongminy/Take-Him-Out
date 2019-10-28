@@ -86,7 +86,7 @@ print("Mission running ", end=' ')
 # Loop until mission ends:
 while world_state.is_mission_running:
     print(".", end="")
-    time.sleep(0.1)
+    time.sleep(5)
     world_state = agent_host.getWorldState()
     for error in world_state.errors:
         print("Error:",error.text)
