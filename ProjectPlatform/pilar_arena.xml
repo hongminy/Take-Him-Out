@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Mission xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <About>
+    <Summary>Simple Arena!</Summary>
+  </About>
+  
+  <ServerSection>
+    <ServerInitialConditions>
+      <Time>
+          <StartTime>6000</StartTime>
+          <AllowPassageOfTime>false</AllowPassageOfTime>
+      </Time>
+      <Weather>clear</Weather>
+    </ServerInitialConditons>
+    <ServerHandlers>
+      <FlatWorldGenerator generatorString="3;7,1;1;"/>
+      <DrawingDecorator>
+        <DrawCuboid type="cobblestone" face="UP" x1="-20" y1="2" z1="-20" x2="20" y2="6" z2="20"/>
+        <DrawCuboid type="air" face="UP" x1="-19" y1="2" z1="-19" x2="19" y2="6" z2="19"/>
+
+        <DrawLine type="cobblestone" face="UP" x1="0" y1="2" z1="0" x2="0" y2="6" z2="0"/>
+        <DrawLine type="cobblestone" face="UP" x1="4" y1="2" z1="4" x2="4" y2="6" z2="4"/>
+        <DrawLine type="cobblestone" face="UP" x1="8" y1="2" z1="8" x2="8" y2="6" z2="8"/>
+        <DrawLine type="cobblestone" face="UP" x1="12" y1="2" z1="12" x2="12" y2="6" z2="12"/>
+        <DrawLine type="cobblestone" face="UP" x1="16" y1="2" z1="16" x2="16" y2="6" z2="16"/>
+        <DrawLine type="cobblestone" face="UP" x1="-16" y1="2" z1="-16" x2="-16" y2="6" z2="-16"/>
+        <DrawLine type="cobblestone" face="UP" x1="-12" y1="2" z1="-12" x2="-12" y2="6" z2="-12"/>
+        <DrawLine type="cobblestone" face="UP" x1="-8" y1="2" z1="-8" x2="-8" y2="6" z2="-8"/>
+        <DrawLine type="cobblestone" face="UP" x1="-4" y1="2" z1="-4" x2="-4" y2="6" z2="-4"/>
+        <DrawLine type="cobblestone" face="UP" x1="4" y1="2" z1="-4" x2="4" y2="6" z2="-4"/>
+        <DrawLine type="cobblestone" face="UP" x1="-4" y1="2" z1="4" x2="-4" y2="6" z2="4"/>
+        <DrawLine type="cobblestone" face="UP" x1="8" y1="2" z1="-8" x2="8" y2="6" z2="-8"/>
+        <DrawLine type="cobblestone" face="UP" x1="-8" y1="2" z1="8" x2="-8" y2="6" z2="8"/>
+        <DrawLine type="cobblestone" face="UP" x1="-12" y1="2" z1="12" x2="-12" y2="6" z2="12"/>
+        <DrawLine type="cobblestone" face="UP" x1="12" y1="2" z1="-12" x2="12" y2="6" z2="-12"/>
+        <DrawLine type="cobblestone" face="UP" x1="-16" y1="2" z1="16" x2="-16" y2="6" z2="16"/>
+        <DrawLine type="cobblestone" face="UP" x1="16" y1="2" z1="-16" x2="16" y2="6" z2="-16"/>
+
+        <DrawCuboid type="cobblestone" face="UP" x1="-19" y1="2" z1="-2" x2="-16" y2="6" z2="2"/>
+        <DrawCuboid type="cobblestone" face="UP" x1="19" y1="2" z1="-2" x2="16" y2="6" z2="2"/>
+      </DrawingDecorator>
+      <ServerQuitWhenAnyAgentFinishes/>
+    </ServerHandlers>
+  </ServerSection>
+  
+  <AgentSection mode="Survival">
+    <Name>MalmoTutorialBot</Name>
+    <AgentStart>
+      <Placement x="0" y="2" z="0"/>
+    </AgentStart>
+    <AgentHandlers>
+      <ObservationFromFullStats/>
+      <ContinuousMovementCommands turnSpeedDegs="180"/>
+    </AgentHandlers>
+  </AgentSection>
+</Mission>
