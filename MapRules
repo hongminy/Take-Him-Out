@@ -1,5 +1,5 @@
-# The map is a rectangal with edge length from 100 - 200 grids
-# It is made by earth and the obstacle is made by diamond
-# There are 100 - 200 obstacles each with area of 1 or 4
-# There are pitfalls around the map (Lava) will kill agents if any of them fall into the lava
+# The map is a rectangal with edge length 40 grids
+# It is made by cobblestone
+# There are several obstacles each with area of 1 or 4 across the center 
+
 
