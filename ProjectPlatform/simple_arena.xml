@@ -25,12 +25,25 @@
   </ServerSection>
   
   <AgentSection mode="Survival">
-    <Name>MalmoTutorialBot</Name>
+    <Name>"Steve"</Name>
     <AgentStart>
       <Inventory>
         <InventoryItem slot="0" type="snowball" quantity="64"/>
       </Inventory>
-      <Placement x="0" y="2" z="0"/>
+      <Placement x="-10" y="2" z="-10"/>
+    </AgentStart>
+    <AgentHandlers>
+      <ObservationFromFullStats/>
+      <ContinuousMovementCommands turnSpeedDegs="180"/>
+    </AgentHandlers>
+  </AgentSection>
+  <AgentSection mode="Survival">
+    <Name>"opponent"</Name>
+    <AgentStart>
+      <Inventory>
+        <InventoryItem slot="0" type="snowball" quantity="64"/>
+      </Inventory>
+      <Placement x="10" y="2" z="10"/>
     </AgentStart>
     <AgentHandlers>
       <ObservationFromFullStats/>
