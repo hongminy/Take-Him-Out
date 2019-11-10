@@ -56,7 +56,7 @@ def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, 
                     print("Will wait and retry.", max_attempts - used_attempts, "attempts left.")
                     time.sleep(2)
             else:
-                print("Other error:", e.message)
+                print("Other error:", e)
                 print("Waiting will not help here - bailing immediately.")
                 exit(1)
         if used_attempts == max_attempts:
@@ -86,7 +86,7 @@ if agent_host.receivedArgument("help"):
     print(agent_host.getUsage())
     exit(0)
 
-mission_file = './simple_arena.xml'
+mission_file = './pilar_arena.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
