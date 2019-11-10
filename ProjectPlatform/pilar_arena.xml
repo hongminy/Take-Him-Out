@@ -2,7 +2,7 @@
 <Mission xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <About>
-    <Summary>Simple Arena!</Summary>
+    <Summary>Pilar Arena!</Summary>
   </About>
   
   <ServerSection>
@@ -45,9 +45,25 @@
   </ServerSection>
   
   <AgentSection mode="Survival">
-    <Name>MalmoTutorialBot</Name>
+    <Name>"Steve"</Name>
     <AgentStart>
-      <Placement x="0" y="2" z="0"/>
+      <Inventory>
+        <InventoryItem slot="0" type="snowball" quantity="64"/>
+      </Inventory>
+      <Placement x="-10" y="2" z="-10"/>
+    </AgentStart>
+    <AgentHandlers>
+      <ObservationFromFullStats/>
+      <ContinuousMovementCommands turnSpeedDegs="180"/>
+    </AgentHandlers>
+  </AgentSection>
+  <AgentSection mode="Survival">
+    <Name>"opponent"</Name>
+    <AgentStart>
+      <Inventory>
+        <InventoryItem slot="0" type="snowball" quantity="64"/>
+      </Inventory>
+      <Placement x="10" y="2" z="10"/>
     </AgentStart>
     <AgentHandlers>
       <ObservationFromFullStats/>
