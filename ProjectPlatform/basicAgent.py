@@ -1,5 +1,5 @@
 class basic_agent:
-    def __init__(self, name = 'DefaultAgnet' ,alpha = 0.3, gamma = 1, n = 1):
+    def __init__(self, name = 'DefaultAgnet', log = False, alpha = 0.3, gamma = 1, n = 1):
         """Constructing an RL agent.
 
         Args
@@ -12,7 +12,7 @@ class basic_agent:
         self.q_table = {}
         self.step_count = 0
         self.lastCommand = None
-        self.log = True
+        self.log = log
         self.name = name
 
 
