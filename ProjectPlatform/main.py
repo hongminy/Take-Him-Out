@@ -28,7 +28,14 @@ import os
 import sys
 import time
 import json
+from randomAgent import random_agent
 
+#---------------------Config-----------------------
+AgentDafaultNames = ["Steven", "James", "Alex", "Prof.Klefstad", "PHP", "WHO AM I?", "WHERE AM I", "WHAT IS THIS"]
+numberOfAgents = 2
+mission_file = './pilar_arena.xml'
+log = True
+#--------------------End of Config-------------------
 def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, role, expId):
     used_attempts = 0
     max_attempts = 5
@@ -73,20 +80,20 @@ else:
     print = functools.partial(print, flush=True)
 
 # Create default Malmo objects:
+hosts = [MalmoPython.AgentHost() for n in range(numberOfAgents)]
 
-agent_host = MalmoPython.AgentHost()
-opponent = MalmoPython.AgentHost()
-try:
-    agent_host.parse( sys.argv )
-except RuntimeError as e:
-    print('ERROR:',e)
-    print(agent_host.getUsage())
-    exit(1)
-if agent_host.receivedArgument("help"):
-    print(agent_host.getUsage())
-    exit(0)
+for agent_host in hosts:
+    try:
+        agent_host.parse( sys.argv )
+    except RuntimeError as e:
+        print('ERROR:',e)
+        print(agent_host.getUsage())
+        exit(1)
+    if agent_host.receivedArgument("help"):
+        print(agent_host.getUsage())
+        exit(0)
 
-mission_file = './pilar_arena.xml'
+
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -95,12 +102,13 @@ my_mission_record = MalmoPython.MissionRecordSpec()
 
 # Making a ClientPool
 client_pool = MalmoPython.ClientPool()
-for x in range(10000, 10000 + 2 + 1):
+for x in range(10000, 10000 + numberOfAgents + 1):
     client_pool.add( MalmoPython.ClientInfo('127.0.0.1', x) )
 
 # Attempt to start a mission:
-safeStartMission(agent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 0, 'Test')
-safeStartMission(opponent, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 1, 'Test')
+for n in range(numberOfAgents):
+    safeStartMission(hosts[n], my_mission, client_pool, MalmoPython.MissionRecordSpec(), n, 'Test')
+
 # max_retries = 3
 # for retry in range(max_retries):
 #     try:
@@ -115,7 +123,7 @@ safeStartMission(opponent, my_mission, client_pool, MalmoPython.MissionRecordSpe
 
 # Loop until mission starts:
 print("Waiting for the mission to start ", end=' ')
-world_state = agent_host.getWorldState()
+world_state = hosts[numberOfAgents-1].getWorldState()
 while not world_state.has_mission_begun:
     print(".", end="")
     time.sleep(0.1)
@@ -126,10 +134,20 @@ while not world_state.has_mission_begun:
 print()
 print("Mission running ", end=' ')
 
+agents= {}
+for n in range(numberOfAgents):
+    agent = random_agent(AgentDafaultNames[n%8])
+    agents[agent] = hosts[n]
+
+
+
 # Loop until mission ends:
 while world_state.is_mission_running:
+    for agent in agents:
+        action = agent.get_possible_actions()
+        agent.act(agents[agent], action)
     print(".", end="")
-    time.sleep(5)
+    time.sleep(0.1)
     world_state = agent_host.getWorldState()
     for error in world_state.errors:
         print("Error:",error.text)

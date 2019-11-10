@@ -38,7 +38,7 @@
     </AgentHandlers>
   </AgentSection>
   <AgentSection mode="Survival">
-    <Name>"opponent"</Name>
+    <Name>"James"</Name>
     <AgentStart>
       <Inventory>
         <InventoryItem slot="0" type="snowball" quantity="64"/>
