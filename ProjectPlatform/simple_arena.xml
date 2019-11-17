@@ -25,11 +25,12 @@
   </ServerSection>
   
   <AgentSection mode="Survival">
-    <Name>"Steve"</Name>
+    <Name>MalmoTutorialBot</Name>
     <AgentStart>
       <Inventory>
         <InventoryItem slot="0" type="splash_potion" quantity="64"/>
       </Inventory>
+<<<<<<< HEAD
       <Placement x="-10" y="2" z="-10"/>
     </AgentStart>
     <AgentHandlers>
@@ -44,6 +45,9 @@
         <InventoryItem slot="0" type="splash_potion" quantity="64"/>
       </Inventory>
       <Placement x="10" y="2" z="10"/>
+=======
+      <Placement x="0" y="2" z="0"/>
+>>>>>>> parent of c9d87fe... Multi-agent update1
     </AgentStart>
     <AgentHandlers>
       <ObservationFromFullStats/>

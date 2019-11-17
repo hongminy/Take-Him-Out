@@ -30,6 +30,7 @@ import time
 import json
 from randomAgent import random_agent
 
+<<<<<<< HEAD
 #---------------------Config-----------------------
 AgentDafaultNames = ["Steven", "James", "Alex", "Prof.Klefstad", "PHP", "WHO AM I?", "WHERE AM I", "WHAT IS THIS"]
 numberOfAgents = 2
@@ -72,6 +73,8 @@ def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, 
             exit(1)
     print("startMission called okay.")
 
+=======
+>>>>>>> parent of c9d87fe... Multi-agent update1
 # sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
 
 if sys.version_info[0] == 2:
@@ -98,7 +101,6 @@ for agent_host in hosts:
 <<<<<<< HEAD
 =======
 agent_host = MalmoPython.AgentHost()
-opponent = MalmoPython.AgentHost()
 try:
     agent_host.parse( sys.argv )
 except RuntimeError as e:
@@ -120,6 +122,7 @@ with open(mission_file, 'r') as f:
     my_mission = MalmoPython.MissionSpec(mission_xml, True)
 my_mission_record = MalmoPython.MissionRecordSpec()
 
+<<<<<<< HEAD
 # Making a ClientPool
 client_pool = MalmoPython.ClientPool()
 for x in range(10000, 10000 + numberOfAgents + 1):
@@ -130,6 +133,22 @@ for n in range(numberOfAgents):
     safeStartMission(hosts[n], my_mission, client_pool, MalmoPython.MissionRecordSpec(), n, 'Test')
 
 
+=======
+# Attempt to start a mission:
+max_retries = 3
+for retry in range(max_retries):
+    try:
+        agent_host.startMission( my_mission, my_mission_record )
+        break
+    except RuntimeError as e:
+        if retry == max_retries - 1:
+            print("Error starting mission:",e)
+            exit(1)
+        else:
+            time.sleep(2)
+
+# Loop until mission starts:
+>>>>>>> parent of c9d87fe... Multi-agent update1
 print("Waiting for the mission to start ", end=' ')
 world_state = hosts[numberOfAgents-1].getWorldState()
 while not world_state.has_mission_begun:
