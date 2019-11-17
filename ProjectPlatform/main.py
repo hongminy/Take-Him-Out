@@ -33,7 +33,8 @@ from randomAgent import random_agent
 #---------------------Config-----------------------
 AgentDafaultNames = ["Steven", "James", "Alex", "Prof.Klefstad", "PHP", "WHO AM I?", "WHERE AM I", "WHAT IS THIS"]
 numberOfAgents = 2
-mission_file = './pilar_arena.xml'
+#mission_file = './pilar_arena.xml'
+mission_file = './simple_arena.xml'
 log = True
 #--------------------End of Config-------------------
 def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, role, expId):
@@ -109,19 +110,7 @@ for x in range(10000, 10000 + numberOfAgents + 1):
 for n in range(numberOfAgents):
     safeStartMission(hosts[n], my_mission, client_pool, MalmoPython.MissionRecordSpec(), n, 'Test')
 
-# max_retries = 3
-# for retry in range(max_retries):
-#     try:
-#         agent_host.startMission( my_mission, my_mission_record )
-#         break
-#     except RuntimeError as e:
-#         if retry == max_retries - 1:
-#             print("Error starting mission:",e)
-#             exit(1)
-#         else:
-#             time.sleep(2)
 
-# Loop until mission starts:
 print("Waiting for the mission to start ", end=' ')
 world_state = hosts[numberOfAgents-1].getWorldState()
 while not world_state.has_mission_begun:
@@ -134,18 +123,19 @@ while not world_state.has_mission_begun:
 print()
 print("Mission running ", end=' ')
 
-agents= {}
-for n in range(numberOfAgents):
-    agent = random_agent(AgentDafaultNames[n%8])
-    agents[agent] = hosts[n]
+# agents= {}
+# for n in range(numberOfAgents):
+#     agent = random_agent(AgentDafaultNames[n%8])
+#     agents[agent] = hosts[n]
 
-
+# Give Splash Damage Potion
+hosts[0].sendCommand("chat /give \"James\" splash_potion 64 0 {Potion:\"minecraft:harming\"}")
 
 # Loop until mission ends:
 while world_state.is_mission_running:
-    for agent in agents:
-        action = agent.get_possible_actions()
-        agent.act(agents[agent], action)
+    # for agent in agents:
+    #     action = agent.get_possible_actions()
+    #     agent.act(agents[agent], action)
     print(".", end="")
     time.sleep(0.1)
     world_state = agent_host.getWorldState()

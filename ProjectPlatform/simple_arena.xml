@@ -28,7 +28,7 @@
     <Name>"Steve"</Name>
     <AgentStart>
       <Inventory>
-        <InventoryItem slot="0" type="snowball" quantity="64"/>
+        <InventoryItem slot="0" type="splash_potion" quantity="64"/>
       </Inventory>
       <Placement x="-10" y="2" z="-10"/>
     </AgentStart>
@@ -41,7 +41,7 @@
     <Name>"James"</Name>
     <AgentStart>
       <Inventory>
-        <InventoryItem slot="0" type="snowball" quantity="64"/>
+        <InventoryItem slot="0" type="splash_potion" quantity="64"/>
       </Inventory>
       <Placement x="10" y="2" z="10"/>
     </AgentStart>

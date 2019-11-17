@@ -2,7 +2,7 @@
 <Mission xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <About>
-    <Summary>Pilar Arena!</Summary>
+    <Summary>Simple Arena!</Summary>
   </About>
   
   <ServerSection>
@@ -45,8 +45,9 @@
   </ServerSection>
   
   <AgentSection mode="Survival">
-    <Name>"Steve"</Name>
+    <Name>MalmoTutorialBot</Name>
     <AgentStart>
+<<<<<<< HEAD
       <Inventory>
         <InventoryItem slot="0" type="snowball" quantity="64"/>
       </Inventory>
@@ -64,6 +65,9 @@
         <InventoryItem slot="0" type="snowball" quantity="64"/>
       </Inventory>
       <Placement x="10" y="2" z="10"/>
+=======
+      <Placement x="0" y="2" z="0"/>
+>>>>>>> parent of d00bdbc... Add for support multiple agents
     </AgentStart>
     <AgentHandlers>
       <ObservationFromFullStats/>
