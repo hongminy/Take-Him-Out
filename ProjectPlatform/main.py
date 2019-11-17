@@ -110,6 +110,9 @@ if agent_host.receivedArgument("help"):
     exit(0)
 
 mission_file = './simple_arena.xml'
+<<<<<<< HEAD
+>>>>>>> parent of 5aac906... Fix a issue causing crash when load pilar_arena
+=======
 >>>>>>> parent of 5aac906... Fix a issue causing crash when load pilar_arena
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
