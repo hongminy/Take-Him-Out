@@ -64,7 +64,7 @@ def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, 
                     print("Will wait and retry.", max_attempts - used_attempts, "attempts left.")
                     time.sleep(2)
             else:
-                print("Other error:", e)
+                print("Other error:", e.message)
                 print("Waiting will not help here - bailing immediately.")
                 exit(1)
         if used_attempts == max_attempts:
@@ -95,6 +95,22 @@ for agent_host in hosts:
         exit(0)
 
 
+<<<<<<< HEAD
+=======
+agent_host = MalmoPython.AgentHost()
+opponent = MalmoPython.AgentHost()
+try:
+    agent_host.parse( sys.argv )
+except RuntimeError as e:
+    print('ERROR:',e)
+    print(agent_host.getUsage())
+    exit(1)
+if agent_host.receivedArgument("help"):
+    print(agent_host.getUsage())
+    exit(0)
+
+mission_file = './simple_arena.xml'
+>>>>>>> parent of 5aac906... Fix a issue causing crash when load pilar_arena
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
