@@ -18,12 +18,13 @@
       <DrawingDecorator>
         <DrawCuboid type="cobblestone" face="UP" x1="-20" y1="2" z1="-20" x2="20" y2="6" z2="20"/>
         <DrawCuboid type="air" face="UP" x1="-19" y1="2" z1="-19" x2="19" y2="6" z2="19"/>
-        <DrawBlock type="command_block" x="0" y="4" z="0"/>
+        <DrawBlock type="air" x="0" y="20" z="0"/>
+        <DrawBlock type="repeating_command_block" x="0" y="24" z="0"/>
       </DrawingDecorator>
       <ServerQuitWhenAnyAgentFinishes/>
     </ServerHandlers>
   </ServerSection>
-  
+  <!--Main Agent-->
   <AgentSection mode="Survival">
     <Name>"Steve"</Name>
     <AgentStart>
@@ -37,6 +38,7 @@
       <ContinuousMovementCommands turnSpeedDegs="180"/>
     </AgentHandlers>
   </AgentSection>
+  <!--opponent Agent-->
   <AgentSection mode="Survival">
     <Name>"opponent"</Name>
     <AgentStart>
@@ -46,6 +48,17 @@
       <Placement x="10" y="2" z="10"/>
     </AgentStart>
     <AgentHandlers>
+      <ObservationFromFullStats/>
+      <ContinuousMovementCommands turnSpeedDegs="180"/>
+    </AgentHandlers>
+  </AgentSection>
+  <AgentSection mode="Creative">
+    <Name>"spectator"</Name>
+    <AgentStart>
+      <Placement x="0" y="22" z="0" yaw="90" pitch="-90"/>
+    </AgentStart>
+    <AgentHandlers>
+      <ChatCommands/>
       <ObservationFromFullStats/>
       <ContinuousMovementCommands turnSpeedDegs="180"/>
     </AgentHandlers>

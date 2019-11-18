@@ -76,6 +76,8 @@ else:
 
 agent_host = MalmoPython.AgentHost()
 opponent = MalmoPython.AgentHost()
+spectator = MalmoPython.AgentHost()
+
 try:
     agent_host.parse( sys.argv )
 except RuntimeError as e:
@@ -95,12 +97,13 @@ my_mission_record = MalmoPython.MissionRecordSpec()
 
 # Making a ClientPool
 client_pool = MalmoPython.ClientPool()
-for x in range(10000, 10000 + 2 + 1):
+for x in range(10000, 10000 + 3 + 1):
     client_pool.add( MalmoPython.ClientInfo('127.0.0.1', x) )
 
 # Attempt to start a mission:
 safeStartMission(agent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 0, 'Test')
 safeStartMission(opponent, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 1, 'Test')
+safeStartMission(spectator, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 2, 'Test')
 
 # Loop until mission starts:
 print("Waiting for the mission to start ", end=' ')
@@ -115,9 +118,12 @@ while not world_state.has_mission_begun:
 print()
 print("Mission running ", end=' ')
 
+spectator.sendCommand("jump 1")
+spectator.sendCommand("jump 0")
+spectator.sendCommand("jump 1")
+
 # Loop until mission ends:
 while world_state.is_mission_running:
-    print(".", end="")
     time.sleep(5)
     world_state = agent_host.getWorldState()
     for error in world_state.errors:
