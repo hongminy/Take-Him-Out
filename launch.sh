@@ -1,4 +1,6 @@
 #!/bin/bash
-open -a Terminal.app ~/Documents/GitHub/Minecraft-Cracker/ProjectPlatform/malmo/MalmoPlatform/Minecraft/launchClient.sh
+./single_launch.sh
 sleep 15
-open -a Terminal.app ~/Documents/GitHub/Minecraft-Cracker/ProjectPlatform/malmo/MalmoPlatform/Minecraft/launchClient.sh
+./single_launch.sh
+sleep 15
+./single_launch.sh

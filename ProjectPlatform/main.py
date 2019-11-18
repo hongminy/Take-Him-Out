@@ -118,10 +118,8 @@ while not world_state.has_mission_begun:
 print()
 print("Mission running ", end=' ')
 
-spectator.sendCommand("jump 1")
-spectator.sendCommand("jump 0")
-spectator.sendCommand("jump 1")
-
+spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 replace {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\"}")
+spectator.sendCommand("chat /setblock 0 1 0 minecraft:redstone_block 0 replace")
 # Loop until mission ends:
 while world_state.is_mission_running:
     time.sleep(5)
