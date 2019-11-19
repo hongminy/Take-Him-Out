@@ -16,19 +16,15 @@
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # ------------------------------------------------------------------------------------------------
-
 # Tutorial sample #7: The Maze Decorator
-
 try:
     from malmo import MalmoPython
 except:
     import MalmoPython
-
 import os
 import sys
 import time
 import json
-
 def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, role, expId):
     used_attempts = 0
     max_attempts = 5
@@ -63,70 +59,58 @@ def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, 
             print("All chances used up - bailing now.")
             exit(1)
     print("startMission called okay.")
-
 # sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
-
 if sys.version_info[0] == 2:
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
 else:
     import functools
     print = functools.partial(print, flush=True)
-
 # Create default Malmo objects:
-
 agent_host = MalmoPython.AgentHost()
 opponent = MalmoPython.AgentHost()
 spectator = MalmoPython.AgentHost()
-
 try:
-    agent_host.parse( sys.argv )
+    spectator.parse( sys.argv )
 except RuntimeError as e:
     print('ERROR:',e)
-    print(agent_host.getUsage())
+    print(spectator.getUsage())
     exit(1)
-if agent_host.receivedArgument("help"):
-    print(agent_host.getUsage())
+if spectator.receivedArgument("help"):
+    print(spectator.getUsage())
     exit(0)
-
 mission_file = './simple_arena.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
     my_mission = MalmoPython.MissionSpec(mission_xml, True)
 my_mission_record = MalmoPython.MissionRecordSpec()
-
 # Making a ClientPool
 client_pool = MalmoPython.ClientPool()
 for x in range(10000, 10000 + 3 + 1):
     client_pool.add( MalmoPython.ClientInfo('127.0.0.1', x) )
-
 # Attempt to start a mission:
-safeStartMission(agent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 0, 'Test')
+safeStartMission(spectator, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 0, 'Test')
 safeStartMission(opponent, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 1, 'Test')
-safeStartMission(spectator, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 2, 'Test')
-
+safeStartMission(agent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 2, 'Test')
 # Loop until mission starts:
 print("Waiting for the mission to start ", end=' ')
-world_state = agent_host.getWorldState()
+world_state = spectator.getWorldState()
 while not world_state.has_mission_begun:
     print(".", end="")
     time.sleep(0.1)
-    world_state = agent_host.getWorldState()
+    world_state = spectator.getWorldState()
     for error in world_state.errors:
         print("Error:",error.text)
-
 print()
 print("Mission running ", end=' ')
-
-spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 replace {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\"}")
+spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 destory {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\"}")
 spectator.sendCommand("chat /setblock 0 1 0 minecraft:redstone_block 0 replace")
 # Loop until mission ends:
 while world_state.is_mission_running:
     time.sleep(5)
-    world_state = agent_host.getWorldState()
+    world_state = spectator.getWorldState()
     for error in world_state.errors:
         print("Error:",error.text)
-
 print()
 print("Mission ended")
 # Mission has ended.
