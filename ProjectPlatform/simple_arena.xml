@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <Mission xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
   <About>
     <Summary>Simple Arena!</Summary>
   </About>
-  
   <ServerSection>
     <ServerInitialConditions>
       <Time>
@@ -23,6 +21,21 @@
       <ServerQuitWhenAnyAgentFinishes/>
     </ServerHandlers>
   </ServerSection>
+  <AgentSection mode="Creative">
+    <Name>"spectator"</Name>
+    <AgentStart>
+      <Placement x="0.5" y="31" z="0.5" yaw="90" pitch="90"/>
+    </AgentStart>
+    <AgentHandlers>
+      <ChatCommands/>
+      <ObservationFromFullStats/>
+      <ContinuousMovementCommands turnSpeedDegs="180"/>
+      <VideoProducer>
+        <Width>640</Width>
+        <Height>640</Height>
+      </VideoProducer>
+    </AgentHandlers>
+  </AgentSection>
   <!--Main Agent-->
   <AgentSection mode="Survival">
     <Name>"Steve"</Name>
@@ -47,17 +60,6 @@
       <Placement x="10" y="2" z="10"/>
     </AgentStart>
     <AgentHandlers>
-      <ObservationFromFullStats/>
-      <ContinuousMovementCommands turnSpeedDegs="180"/>
-    </AgentHandlers>
-  </AgentSection>
-  <AgentSection mode="Creative">
-    <Name>"spectator"</Name>
-    <AgentStart>
-      <Placement x="0.5" y="31" z="0.5" yaw="90" pitch="90"/>
-    </AgentStart>
-    <AgentHandlers>
-      <ChatCommands/>
       <ObservationFromFullStats/>
       <ContinuousMovementCommands turnSpeedDegs="180"/>
     </AgentHandlers>
