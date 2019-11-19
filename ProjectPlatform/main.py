@@ -28,15 +28,7 @@ import os
 import sys
 import time
 import json
-from randomAgent import random_agent
 
-#---------------------Config-----------------------
-AgentDafaultNames = ["Steven", "James", "Alex", "Prof.Klefstad", "PHP", "WHO AM I?", "WHERE AM I", "WHAT IS THIS"]
-numberOfAgents = 2
-#mission_file = './pilar_arena.xml'
-mission_file = './simple_arena.xml'
-log = True
-#--------------------End of Config-------------------
 def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, role, expId):
     used_attempts = 0
     max_attempts = 5
@@ -64,7 +56,7 @@ def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, 
                     print("Will wait and retry.", max_attempts - used_attempts, "attempts left.")
                     time.sleep(2)
             else:
-                print("Other error:", e)
+                print("Other error:", e.message)
                 print("Waiting will not help here - bailing immediately.")
                 exit(1)
         if used_attempts == max_attempts:
@@ -81,20 +73,22 @@ else:
     print = functools.partial(print, flush=True)
 
 # Create default Malmo objects:
-hosts = [MalmoPython.AgentHost() for n in range(numberOfAgents)]
 
-for agent_host in hosts:
-    try:
-        agent_host.parse( sys.argv )
-    except RuntimeError as e:
-        print('ERROR:',e)
-        print(agent_host.getUsage())
-        exit(1)
-    if agent_host.receivedArgument("help"):
-        print(agent_host.getUsage())
-        exit(0)
+agent_host = MalmoPython.AgentHost()
+opponent = MalmoPython.AgentHost()
+spectator = MalmoPython.AgentHost()
 
+try:
+    agent_host.parse( sys.argv )
+except RuntimeError as e:
+    print('ERROR:',e)
+    print(agent_host.getUsage())
+    exit(1)
+if agent_host.receivedArgument("help"):
+    print(agent_host.getUsage())
+    exit(0)
 
+mission_file = './simple_arena.xml'
 with open(mission_file, 'r') as f:
     print("Loading mission from %s" % mission_file)
     mission_xml = f.read()
@@ -103,16 +97,17 @@ my_mission_record = MalmoPython.MissionRecordSpec()
 
 # Making a ClientPool
 client_pool = MalmoPython.ClientPool()
-for x in range(10000, 10000 + numberOfAgents + 1):
+for x in range(10000, 10000 + 3 + 1):
     client_pool.add( MalmoPython.ClientInfo('127.0.0.1', x) )
 
 # Attempt to start a mission:
-for n in range(numberOfAgents):
-    safeStartMission(hosts[n], my_mission, client_pool, MalmoPython.MissionRecordSpec(), n, 'Test')
+safeStartMission(agent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 0, 'Test')
+safeStartMission(opponent, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 1, 'Test')
+safeStartMission(spectator, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 2, 'Test')
 
-
+# Loop until mission starts:
 print("Waiting for the mission to start ", end=' ')
-world_state = hosts[numberOfAgents-1].getWorldState()
+world_state = agent_host.getWorldState()
 while not world_state.has_mission_begun:
     print(".", end="")
     time.sleep(0.1)
@@ -123,21 +118,11 @@ while not world_state.has_mission_begun:
 print()
 print("Mission running ", end=' ')
 
-# agents= {}
-# for n in range(numberOfAgents):
-#     agent = random_agent(AgentDafaultNames[n%8])
-#     agents[agent] = hosts[n]
-
-# Give Splash Damage Potion
-hosts[0].sendCommand("chat /give \"James\" splash_potion 64 0 {Potion:\"minecraft:harming\"}")
-
+spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 replace {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\"}")
+spectator.sendCommand("chat /setblock 0 1 0 minecraft:redstone_block 0 replace")
 # Loop until mission ends:
 while world_state.is_mission_running:
-    # for agent in agents:
-    #     action = agent.get_possible_actions()
-    #     agent.act(agents[agent], action)
-    print(".", end="")
-    time.sleep(0.1)
+    time.sleep(5)
     world_state = agent_host.getWorldState()
     for error in world_state.errors:
         print("Error:",error.text)
