@@ -1,2 +1,2 @@
 #!/bin/bash
-open -a Terminal.app ~/Documents/GitHub/Minecraft-Cracker/ProjectPlatform/malmo/MalmoPlatform/Minecraft/launchClient.sh
+open -a Terminal.app ProjectPlatform/malmo/MalmoPlatform/Minecraft/launchClient.sh

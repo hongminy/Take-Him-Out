@@ -79,13 +79,13 @@ opponent = MalmoPython.AgentHost()
 spectator = MalmoPython.AgentHost()
 
 try:
-    agent_host.parse( sys.argv )
+    spectator.parse( sys.argv )
 except RuntimeError as e:
     print('ERROR:',e)
-    print(agent_host.getUsage())
+    print(spectator.getUsage())
     exit(1)
-if agent_host.receivedArgument("help"):
-    print(agent_host.getUsage())
+if spectator.receivedArgument("help"):
+    print(spectator.getUsage())
     exit(0)
 
 mission_file = './simple_arena.xml'
@@ -101,29 +101,30 @@ for x in range(10000, 10000 + 3 + 1):
     client_pool.add( MalmoPython.ClientInfo('127.0.0.1', x) )
 
 # Attempt to start a mission:
-safeStartMission(agent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 0, 'Test')
+safeStartMission(spectator, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 0, 'Test')
+
 safeStartMission(opponent, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 1, 'Test')
-safeStartMission(spectator, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 2, 'Test')
+safeStartMission(agent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 2, 'Test')
 
 # Loop until mission starts:
 print("Waiting for the mission to start ", end=' ')
-world_state = agent_host.getWorldState()
+world_state = spectator.getWorldState()
 while not world_state.has_mission_begun:
     print(".", end="")
     time.sleep(0.1)
-    world_state = agent_host.getWorldState()
+    world_state = spectator.getWorldState()
     for error in world_state.errors:
         print("Error:",error.text)
 
 print()
 print("Mission running ", end=' ')
 
-spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 replace {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\"}")
+spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 destory {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\"}")
 spectator.sendCommand("chat /setblock 0 1 0 minecraft:redstone_block 0 replace")
 # Loop until mission ends:
 while world_state.is_mission_running:
     time.sleep(5)
-    world_state = agent_host.getWorldState()
+    world_state = spectator.getWorldState()
     for error in world_state.errors:
         print("Error:",error.text)
 

@@ -70,12 +70,16 @@ def launch_minecraft_in_background(minecraft_path, ports=None, timeout=360, repl
             tmp_file.close()
             os.chmod(launcher_file, 0o700)
             p = subprocess.Popen(['open', '-a', 'Terminal.app', launcher_file])
+            q = subprocess.Popen(['open', '-a', 'Terminal.app', launcher_file])
+            r = subprocess.Popen(['open', '-a', 'Terminal.app', launcher_file])
         else:
             p = subprocess.Popen(minecraft_path + "/launchClient.sh -port " + str(port) +
                                  replaceable_arg + scorepolicy_arg + scorepolicy_value,
                                  close_fds=True, shell=True,
                                  stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         processes.append(p)
+        processes.append(q)
+        processes.append(r)
         print('Giving Minecraft some time to launch... ')
         launched = False
         for _ in range(timeout // 3):

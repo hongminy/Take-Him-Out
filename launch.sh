@@ -1,6 +1,6 @@
 #!/bin/bash
 ./single_launch.sh
-sleep 15
+sleep 5
 ./single_launch.sh
-sleep 15
+sleep 5
 ./single_launch.sh

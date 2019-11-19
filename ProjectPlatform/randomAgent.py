@@ -6,7 +6,7 @@ class random_agent(basic_agent):
 
 
     def get_possible_actions(self):
-        return random.choice(["turn 1", "turn -1", "move 1", "move -1", "strafe 1", "strafe -1", "attack 1", "attack 0"])
+        return random.choice(["turn 1", "turn -1", "move 1", "move -1", "strafe 1", "strafe -1", "use 1", "use 0"])
 
 
 
