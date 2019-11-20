@@ -26,7 +26,7 @@ We wrote a basic agent that work as the parent class of other more complicated a
 We made a random agent that pick eligible acts randomly.
 We modified the game logistics to make throwing a fireball possible.
 
-## Approach
+## A Monte-Carlo Approach
 To make the training process easier, we restrict the possible actions for each agent, inside the game, the only valid actions are: moving the field of view to the left or the right, move forward or backward, and throw fireballs. To further zone in our task, we set the persecpt of our agent to have all general status of both itself and the opponent. 
 
 The main algorithm that we use for training is Q-learning reinforcement learning. the strategy for our training is quite curriculum: 
