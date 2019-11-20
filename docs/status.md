@@ -24,6 +24,6 @@ As a baseline, we expect our agent at least to perform rationally as a player in
 
 
 <figure class="video_container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UMcZHYxZHTo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/enMumwvLAug" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
   
