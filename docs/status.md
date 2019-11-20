@@ -10,7 +10,7 @@ title: Status
 
 <!-- blank line -->
 <figure class="video_container">
-  <iframe width=1280 height=720 src="https://www.youtube.com/embed/UMcZHYxZHTo" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/UMcZHYxZHTo" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 <!-- blank line -->
   
