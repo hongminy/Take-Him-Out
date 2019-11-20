@@ -17,19 +17,19 @@
         <DrawCuboid type="cobblestone" face="UP" x1="-20" y1="2" z1="-20" x2="20" y2="6" z2="20"/>
         <DrawCuboid type="air" face="UP" x1="-19" y1="2" z1="-19" x2="19" y2="6" z2="19"/>
         <DrawBlock type="barrier" x="0" y="30" z="0"/>
+        <DrawBlock type="air" x="0" y="1" z="0"/>
+        <DrawBlock type="air" x="0" y="0" z="0"/>
       </DrawingDecorator>
       <ServerQuitWhenAnyAgentFinishes/>
     </ServerHandlers>
   </ServerSection>
-  <AgentSection mode="Creative">
+  <AgentSection mode="Spectator">
     <Name>"spectator"</Name>
     <AgentStart>
       <Placement x="0.5" y="31" z="0.5" yaw="90" pitch="90"/>
     </AgentStart>
     <AgentHandlers>
       <ChatCommands/>
-      <ObservationFromFullStats/>
-      <ContinuousMovementCommands turnSpeedDegs="180"/>
       <VideoProducer>
         <Width>640</Width>
         <Height>640</Height>
@@ -38,7 +38,7 @@
   </AgentSection>
   <!--Main Agent-->
   <AgentSection mode="Survival">
-    <Name>"Steve"</Name>
+    <Name>"Opponent"</Name>
     <AgentStart>
       <Inventory>
         <InventoryItem slot="0" type="snowball" quantity="64"/>
@@ -46,13 +46,14 @@
       <Placement x="-10" y="2" z="-10"/>
     </AgentStart>
     <AgentHandlers>
+      <ObservationFromHotBar/>
       <ObservationFromFullStats/>
       <ContinuousMovementCommands turnSpeedDegs="180"/>
     </AgentHandlers>
   </AgentSection>
   <!--opponent Agent-->
   <AgentSection mode="Survival">
-    <Name>"Opponent"</Name>
+    <Name>"Steve"</Name>
     <AgentStart>
       <Inventory>
         <InventoryItem slot="0" type="snowball" quantity="64"/>
@@ -60,6 +61,7 @@
       <Placement x="10" y="2" z="10"/>
     </AgentStart>
     <AgentHandlers>
+      <ObservationFromHotBar/>
       <ObservationFromFullStats/>
       <ContinuousMovementCommands turnSpeedDegs="180"/>
     </AgentHandlers>

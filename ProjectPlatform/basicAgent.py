@@ -17,7 +17,7 @@ class basic_agent:
 
 
     def get_possible_actions(self):
-        return ["turn 1", "turn -1", "turn 0", "move 1", "move -1", "move 0" "strafe 1", "strafe -1", "strafe 0", "attack 1", "attack 0"]
+        return ["turn 1", "turn -1", "turn 0", "move 1", "move -1", "move 0" "strafe 1", "strafe -1", "strafe 0", "use 1", "use 0"]
 
     def stopLastCommand(self, agent_host):
         if self.lastCommand != None:

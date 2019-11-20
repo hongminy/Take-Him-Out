@@ -21,44 +21,15 @@ try:
     from malmo import MalmoPython
 except:
     import MalmoPython
+
+from utility import safeStartMission,reload
+from basicAgent import basic_agent
+from randomAgent import random_agent
 import os
 import sys
 import time
 import json
-def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, role, expId):
-    used_attempts = 0
-    max_attempts = 5
-    print("Calling startMission for role", role)
-    while True:
-        try:
-            # Attempt start:
-            agent_host.startMission(my_mission, my_client_pool, my_mission_record, role, expId)
-            break
-        except MalmoPython.MissionException as e:
-            errorCode = e.details.errorCode
-            if errorCode == MalmoPython.MissionErrorCode.MISSION_SERVER_WARMING_UP:
-                print("Server not quite ready yet - waiting...")
-                time.sleep(2)
-            elif errorCode == MalmoPython.MissionErrorCode.MISSION_INSUFFICIENT_CLIENTS_AVAILABLE:
-                print("Not enough available Minecraft instances running.")
-                used_attempts += 1
-                if used_attempts < max_attempts:
-                    print("Will wait in case they are starting up.", max_attempts - used_attempts, "attempts left.")
-                    time.sleep(2)
-            elif errorCode == MalmoPython.MissionErrorCode.MISSION_SERVER_NOT_FOUND:
-                print("Server not found - has the mission with role 0 been started yet?")
-                used_attempts += 1
-                if used_attempts < max_attempts:
-                    print("Will wait and retry.", max_attempts - used_attempts, "attempts left.")
-                    time.sleep(2)
-            else:
-                print("Other error:", e.message)
-                print("Waiting will not help here - bailing immediately.")
-                exit(1)
-        if used_attempts == max_attempts:
-            print("All chances used up - bailing now.")
-            exit(1)
-    print("startMission called okay.")
+
 # sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
 if sys.version_info[0] == 2:
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # flush print output immediately
@@ -88,10 +59,12 @@ my_mission_record = MalmoPython.MissionRecordSpec()
 client_pool = MalmoPython.ClientPool()
 for x in range(10000, 10000 + 3 + 1):
     client_pool.add( MalmoPython.ClientInfo('127.0.0.1', x) )
-# Attempt to start a mission:
+
+# Attempt to start a mission for opponent, Steve, and spectator:
 safeStartMission(spectator, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 0, 'Test')
 safeStartMission(opponent, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 1, 'Test')
 safeStartMission(agent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 2, 'Test')
+
 # Loop until mission starts:
 print("Waiting for the mission to start ", end=' ')
 world_state = spectator.getWorldState()
@@ -103,12 +76,27 @@ while not world_state.has_mission_begun:
         print("Error:",error.text)
 print()
 print("Mission running ", end=' ')
-spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 destory {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\"}")
+spectator.sendCommand("chat Guys, this is a new mission")
+spectator.sendCommand("chat /gamerule commandBlockOutput false")
+spectator.sendCommand("chat /gamerule sendCommandFeedback false")
+spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 destory {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {ExplosionPower:0,Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\",auto:1b}")
 spectator.sendCommand("chat /setblock 0 1 0 minecraft:redstone_block 0 replace")
+
+agent = random_agent("Default")
+agent.log = False
+
+#---MainLoop------MainLoop------MainLoop------MainLoop------MainLoop------MainLoop---#
+
+
 # Loop until mission ends:
 while world_state.is_mission_running:
-    time.sleep(5)
+    reload(spectator,agent_host,opponent)
     world_state = spectator.getWorldState()
+    action = agent.get_possible_actions()
+    agent.act(agent_host,action)
+    action = agent.get_possible_actions()
+    agent.act(opponent,action)
+    time.sleep(0.4)
     for error in world_state.errors:
         print("Error:",error.text)
 print()
