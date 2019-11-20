@@ -4,7 +4,9 @@ title:  Home
 ---
 # CS 175: Minecraft Cracker: A Multi-agent Fireball Battle
 
-![Fireball Battle](https://i.ytimg.com/vi/-HVxYHAch2g/maxresdefault.jpg)
+<p align="center">
+    <img src="https://i.ytimg.com/vi/-HVxYHAch2g/maxresdefault.jpg" width="800" height="450" title="Fireball Battle">
+</p>
 
 
 ### Our project is around a Minecraft fireball battle game that we developed. The rule of the game is very simple, there are two players inside the arena. Whoever defeats the opponent using Fireball will win the game, the one and only, king of the hill. 
