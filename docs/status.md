@@ -26,11 +26,19 @@ We wrote a basic agent that work as the parent class of other more complicated a
 We made a random agent that pick eligible acts randomly.
 We modified the game logistics to make throwing a fireball possible.
 
+To make the training process easier, we restrict the possible actions for each agent, inside the game, the only valid actions are: moving the field of view to the left or the right, move forward or backward, and throw fireballs. To further zone in our task, we set the persecpt of our agent to have all general status of both itself and the opponent. 
+
+The main algorithm that we use for training is Q-learning reinforcement learning. the strategy for our training is quite curriculum: 
+
+In the beginning, we simply trained one random exploring agent to shoot fireballs to a non-moving target. And then, we inherited the Q table to the next generation where the target is making random movements The demo video shows the case that we apply the model that we trained from a random moving target to both sides of the battle. 
+
+![Moves](Moves.png)
 
 
 ## What is next?
-Get more features/datas fit in our agent e.g. posotions of enemy, health of enemy, health of agent ect.
-Collect enough training data by human input.
+Get more features/datas fit in our agent, health of enemy, health of agent ect, so that our agent can perform both aggressively and conservatively.
+Training against advance bot.
+Training by actual human input.
 Build the Q-table that work for our data and find the optimized step size (tuning).
 
 
