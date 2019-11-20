@@ -2,7 +2,7 @@
 layout: default
 title:  Home
 ---
-#CS 175: Minecraft Cracker: The Fireball Battle
+# CS 175: Minecraft Cracker: The Fireball Battle
 
 ![Fireball Battle](https://i.ytimg.com/vi/-HVxYHAch2g/maxresdefault.jpg)
 
