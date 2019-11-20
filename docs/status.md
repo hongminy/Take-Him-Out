@@ -19,7 +19,8 @@ Our project is around a Minecraft fireball battle game that we developed. We rea
 
 The arena is a 20 x 20 stone field with walls and each agent has an unlimited supply of fireballs. The rule of the game is very simple, there are two players inside the arena. Whoever defeats the opponent using Fireball will win the game.
 
-![Arena](docs/Arena.png)
+![Arena](Arena.png)
+
 We made two of the maps that would be our future arena to train our AI.
 We wrote a basic agent that work as the parent class of other more complicated agents.
 We made a random agent that pick eligible acts randomly.
