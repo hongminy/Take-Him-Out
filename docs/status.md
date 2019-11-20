@@ -30,6 +30,8 @@ To make the training process easier, we restrict the possible actions for each a
 
 The main algorithm that we use for training is Q-learning reinforcement learning. the strategy for our training is quite curriculum: 
 
+$$ \hat{Q}(s, a) = r + \gamma \max_{a' \in A}Q(s’, a' ; \Theta_0) - Q(s, a; \Theta) $$
+
 In the beginning, we simply trained one random exploring agent to shoot fireballs to a non-moving target. And then, we inherited the Q table to the next generation where the target is making random movements The demo video shows the case that we apply the model that we trained from a random moving target to both sides of the battle. 
 
 ![Moves](Moves.png)
