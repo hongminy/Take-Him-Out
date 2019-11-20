@@ -15,10 +15,13 @@ title: Status
 <!-- blank line -->
   
 ## What did we do?
+Our project is around a Minecraft fireball battle game that we developed. We really dig deep into configuring this dodgeball battle inside Minecraft including setting projectile entity configuration, command blocks, and Minecraft in-game logic.
+The arena is a 20 x 20 stone field with walls and each agent has an unlimited supply of fireballs. The rule of the game is very simple, there are two players inside the arena. Whoever defeats the opponent using Fireball will win the game.
 We made two of the maps that would be our future arena to train our AI.
 We wrote a basic agent that work as the parent class of other more complicated agents.
 We made a random agent that pick eligible acts randomly.
 We modified the game logistics to make throwing a fireball possible.
+
 
 
 ## What is next?
