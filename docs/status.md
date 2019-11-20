@@ -19,7 +19,4 @@ Build the Q-table that work for our data and find the optimized step size (tunin
 As a baseline, we expect our agent at least to perform rationally as a player in the arena we made, for example, attacking when the opponent is close, jumping to clear the obstacles and moving around normally. After an extended training and having a better designed Q-table, we want our agent to create a somewhat challenging combat environment for the other player. This involves the agent to be tactical, aggressive or conservative depends on its situation, good at using items, and well worn for combat. 
 
 ## Demo Video:
-[![Demo](https://i.ibb.co/WW8YNbv/https-i-ytimg-com-vi-FFElbb-EGBQ-maxresdefault.jpg)](https://www.youtube.com/watch?v=FFElbb-EGBQ "Demo")
-
-## Demo Video2:
 [![Demo2](https://i.ibb.co/w68XmvW/https-i-ytimg-com-vi-UMc-ZHYx-ZHTo-maxresdefault.jpg)](https://www.youtube.com/watch?v=UMcZHYxZHTo "Demo2")
