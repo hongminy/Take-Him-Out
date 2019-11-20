@@ -7,7 +7,7 @@ title:  Home
 ![Fireball Battle](https://i.ytimg.com/vi/-HVxYHAch2g/maxresdefault.jpg)
 
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/UMcZHYxZHTo" frameborder="0" allowfullscreen="true"> </iframe>
+<iframe width="1024" height="576" src="https://www.youtube.com/embed/UMcZHYxZHTo" frameborder="0" allowfullscreen="true"> </iframe>
 
 
 
