@@ -3,7 +3,6 @@ layout: default
 title:  Team
 ---
 
-# {{ page.title }}
 
 
 ## Haosong Liu
