@@ -2,7 +2,7 @@
 layout: default
 title:  Home
 ---
-# CS 175: Minecraft Cracker: A Multi-agent Fireball Battle
+# CS 175: Take Him Out: A Multi-agent Fireball Battle
 
 <p align="center">
     <img src="https://i.ytimg.com/vi/-HVxYHAch2g/maxresdefault.jpg" width="800" height="450" title="Fireball Battle">
