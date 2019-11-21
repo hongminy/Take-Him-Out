@@ -1,5 +1,8 @@
 # The map is a rectangal with edge length 40 grids
 # It is made by cobblestone
 # There are several obstacles each with area of 1 or 4 across the center 
+# We have 3 agents in total, two fighting each other and the rest one as a spectator
+# The agents both have Life = 20 and unlimited number of "fireballs" to throw 
+# The first one who kills the opponent is the winner of the game
 
 
