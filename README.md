@@ -18,7 +18,7 @@ This is the repo of CS175 AI proj. We create minecraft smart agent in the awsome
 
 
 ### Our Source can be found here:
-[Source Code: https://github.com/hongminy/Minecraft-Cracker/](https://github.com/hongminy/Take-Him-Out)
+[Source Code: https://github.com/hongminy/Take-Him-Out](https://github.com/hongminy/Take-Him-Out)
 
 Reports Navigation:
 
