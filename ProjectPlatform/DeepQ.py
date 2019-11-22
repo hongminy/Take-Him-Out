@@ -1,6 +1,8 @@
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Conv2D, MaxPool2D, Activation, Flatten
 from keras.callbacks import TensorBoard
+from keras.optimizers import Adam
+from collections import deque
 
 class DQNAgent:
     def create_model(self):

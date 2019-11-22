@@ -43,12 +43,16 @@ def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, 
             exit(1)
     print("startMission called okay.")
 
-def reload(spectator,steve,opponent):
-    steve_w = steve.getWorldState()
-    opp_w = opponent.getWorldState()
-    if steve_w.number_of_observations_since_last_state > 0:
-        if json.loads(steve_w.observations[-1].text)['Hotbar_0_size'] <= 60:
+
+def updateWorldState(spectator,steve,opponent):
+    return spectator.getWorldState(), steve.getWorldState(), opponent.getWorldState()
+
+
+def reload(spectator,spectator_state,steve_state,opponent_state):
+
+    if steve_state.number_of_observations_since_last_state > 0:
+        if json.loads(steve_state.observations[-1].text)['Hotbar_0_size'] <= 60:
             spectator.sendCommand("chat /replaceitem entity \"Steve\" slot.hotbar.0 minecraft:snowball 64")
-    if opp_w.number_of_observations_since_last_state > 0:
-        if json.loads(opp_w.observations[-1].text)['Hotbar_0_size'] <= 60:
+    if opponent_state.number_of_observations_since_last_state > 0:
+        if json.loads(opponent_state.observations[-1].text)['Hotbar_0_size'] <= 60:
             spectator.sendCommand("chat /replaceitem entity \"Opponent\" slot.hotbar.0 minecraft:snowball 64") 

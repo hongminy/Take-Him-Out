@@ -1,5 +1,6 @@
+import json
 class basic_agent:
-    def __init__(self, name = 'DefaultAgnet', log = False, alpha = 0.3, gamma = 1, n = 1):
+    def __init__(self, name = 'DefaultAgent', log = False, alpha = 0.3, gamma = 1, n = 1):
         """Constructing an RL agent.
 
         Args
@@ -14,6 +15,9 @@ class basic_agent:
         self.lastCommand = None
         self.log = log
         self.name = name
+        self.observation = None
+        self.dataCollection = {'DamageTaken':0, 'DamageDealt':0, 'Life':0, 'XPos':0, 'ZPos':0}
+        self.opponentDataCollection = {'Life':0, 'XPos':0, 'ZPos':0}
 
 
     def get_possible_actions(self):
@@ -28,8 +32,24 @@ class basic_agent:
         agent_host.sendCommand(command)
         self.lastCommand = command
         if self.log:
-            print("{} choose: {}".format(self.name, command))
+            print("{} choose to: {}".format(self.name, command))
 
+    def observe(self, worldstate, opponent_state):
+        # update the observation
+        if worldstate.number_of_observations_since_last_state > 0:
+            state = json.loads(worldstate.observations[-1].text)
+            self.dataCollection['Life'] = state['Life']
+            self.dataCollection['XPos'] = state['XPos']
+            self.dataCollection['ZPos'] = state['ZPos']
+        if opponent_state.number_of_observations_since_last_state > 0:
+            opponent_state = json.loads(opponent_state.observations[-1].text)
+            self.opponentDataCollection['Life'] = opponent_state['Life']
+            self.opponentDataCollection['XPos'] = opponent_state['XPos']
+            self.opponentDataCollection['ZPos'] = opponent_state['ZPos']
+
+        if self.log:
+            print("{} 's state: {}".format(self.name, self.dataCollection))
+            print("{} 's opponent: {}".format(self.name, self.opponentDataCollection))
 
 
 
