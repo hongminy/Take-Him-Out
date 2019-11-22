@@ -22,7 +22,7 @@ try:
 except:
     import MalmoPython
 
-from utility import safeStartMission,reload
+from utility import safeStartMission,reload,updateWorldState
 from basicAgent import basic_agent
 from randomAgent import random_agent
 import os
@@ -38,7 +38,7 @@ else:
     print = functools.partial(print, flush=True)
 # Create default Malmo objects:
 agent_host = MalmoPython.AgentHost()
-opponent = MalmoPython.AgentHost()
+opponent_host = MalmoPython.AgentHost()
 spectator = MalmoPython.AgentHost()
 try:
     spectator.parse( sys.argv )
@@ -62,17 +62,22 @@ for x in range(10000, 10000 + 3 + 1):
 
 # Attempt to start a mission for opponent, Steve, and spectator:
 safeStartMission(spectator, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 0, 'Test')
-safeStartMission(opponent, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 1, 'Test')
+safeStartMission(opponent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 1, 'Test')
 safeStartMission(agent_host, my_mission, client_pool, MalmoPython.MissionRecordSpec(), 2, 'Test')
 
 # Loop until mission starts:
 print("Waiting for the mission to start ", end=' ')
-world_state = spectator.getWorldState()
-while not world_state.has_mission_begun:
+spectator_state = spectator.getWorldState()
+agent_state = agent_host.getWorldState()
+opponent_state = opponent_host.getWorldState()
+
+while not (spectator_state.has_mission_begun and agent_state.has_mission_begun and opponent_state.has_mission_begun):
     print(".", end="")
     time.sleep(0.1)
-    world_state = spectator.getWorldState()
-    for error in world_state.errors:
+    spectator_state = spectator.getWorldState()
+    opponent_state = opponent_host.getWorldState()
+    agent_state = agent_host.getWorldState()
+    for error in spectator_state.errors:
         print("Error:",error.text)
 print()
 print("Mission running ", end=' ')
@@ -82,23 +87,38 @@ spectator.sendCommand("chat /gamerule sendCommandFeedback false")
 spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 destory {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {ExplosionPower:0,Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\",auto:1b}")
 spectator.sendCommand("chat /setblock 0 1 0 minecraft:redstone_block 0 replace")
 
-agent = random_agent("Default")
-agent.log = False
+agent = random_agent("Steve",True) #log = False
+opponent = random_agent("Opponent",True)
+
+
+
+
+
+# clear Worldstate before start
 
 #---MainLoop------MainLoop------MainLoop------MainLoop------MainLoop------MainLoop---#
-
+round = 1
 
 # Loop until mission ends:
-while world_state.is_mission_running:
-    reload(spectator,agent_host,opponent)
-    world_state = spectator.getWorldState()
+while spectator_state.is_mission_running and agent_state.is_mission_running and opponent_state.is_mission_running:
+
+    # TODO: fix the damageTaken and damageDealt
+    # update the three worldstates in the beginning of the loop
+    # spectator, agent_host, opponent_host
+    spectator_state, agent_state, opponent_state = updateWorldState(spectator,agent_host,opponent_host)
+    reload(spectator,spectator_state,agent_state,opponent_state)
+    # reload the agents with "snowball" when they are out of ammo
+    agent.observe(agent_state,opponent_state)
+    opponent.observe(opponent_state,agent_state)
+    # make the agent observe worldstate
     action = agent.get_possible_actions()
     agent.act(agent_host,action)
-    action = agent.get_possible_actions()
-    agent.act(opponent,action)
+    action = opponent.get_possible_actions()
+    opponent.act(opponent_host,action)
     time.sleep(0.4)
-    for error in world_state.errors:
+    for error in spectator_state.errors:
         print("Error:",error.text)
 print()
 print("Mission ended")
+
 # Mission has ended.
