@@ -34,9 +34,15 @@ class basic_agent:
         agent_host.sendCommand(command)
         self.lastCommand = command
         if self.log:
-            print("Round {} {} choose to: {}".format(self.round, self.name, command))
+            print("Round {}: {} choose to: {}".format(self.round, self.name, command))
         self.round += 1
 
+    def log(self):
+        print("Round {}".format(self.round))
+        print("{} 's state: {}\n".format(self.name, self.dataCollection))
+
+        print("After considering his opponent's state: {}\n".format(self.opponentDataCollection))
+        print("He choose to: {}".format(self.name, self.lastCommand))
 
     def observe(self, worldstate, opponent_state):
         # update the observation
