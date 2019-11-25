@@ -102,7 +102,7 @@ opponent = random_agent("Opponent",True)
 # Loop until mission ends:
 while spectator_state.is_mission_running and agent_state.is_mission_running and opponent_state.is_mission_running:
 
-    # TODO: fix the damageTaken and damageDealt
+    # Update: DamageTaken problem got fixed in basicAgent.py
     # update the three worldstates in the beginning of the loop
     # spectator, agent_host, opponent_host
     spectator_state, agent_state, opponent_state = updateWorldState(spectator,agent_host,opponent_host)
