@@ -42,7 +42,7 @@ class basic_agent:
         print("{} 's state: {}\n".format(self.name, self.dataCollection))
 
         print("After considering his opponent's state: {}\n".format(self.opponentDataCollection))
-        print("He choose to: {}".format(self.name, self.lastCommand))
+        print("He choose to: {}".format(self.lastCommand))
 
     def observe(self, worldstate, opponent_state):
         # update the observation
