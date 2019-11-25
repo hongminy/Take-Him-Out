@@ -85,8 +85,8 @@ spectator.sendCommand("chat /gamerule sendCommandFeedback false")
 spectator.sendCommand("chat /setblock 0 0 0 minecraft:repeating_command_block 0 destory {Command:\"/execute @e[type=Snowball] ~ ~ ~ /summon Fireball ~ ~ ~ {ExplosionPower:0,Motion:[0.0,0.0,0.0],direction:[0.0,0.0,0.0]}\",auto:1b}")
 spectator.sendCommand("chat /setblock 0 1 0 minecraft:redstone_block 0 replace")
 
-agent = random_agent("Steve",True) #log = True
-opponent = random_agent("Opponent",True)
+agent = random_agent("Steve",False) #log = False
+opponent = random_agent("Opponent",False)
 
 
 
