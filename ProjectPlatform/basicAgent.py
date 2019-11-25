@@ -33,9 +33,9 @@ class basic_agent:
         self.stopLastCommand(agent_host)
         agent_host.sendCommand(command)
         self.lastCommand = command
-        self.round += 1
         if self.log:
             print("Round {} {} choose to: {}".format(self.round, self.name, command))
+        self.round += 1
 
 
     def observe(self, worldstate, opponent_state):
@@ -46,6 +46,8 @@ class basic_agent:
             if self.round <= 1:
                 self.observationFromPreviousMission['DamageTaken'] = state['DamageTaken']
                 self.observationFromPreviousMission['DamageDealt'] = state['DamageDealt']
+                self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission['DamageTaken']
+                self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission['DamageDealt']
             else:
                 self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission['DamageTaken']
                 self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission['DamageDealt']
