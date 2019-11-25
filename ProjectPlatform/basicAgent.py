@@ -18,6 +18,8 @@ class basic_agent:
         self.observation = None
         self.dataCollection = {'DamageTaken':0, 'DamageDealt':0, 'Life':0, 'XPos':0, 'ZPos':0}
         self.opponentDataCollection = {'Life':0, 'XPos':0, 'ZPos':0}
+        self.observationFromPreviousMission = {'DamageTaken':0, 'DamageDealt':0}
+        self.round = 1
 
 
     def get_possible_actions(self):
@@ -31,16 +33,25 @@ class basic_agent:
         self.stopLastCommand(agent_host)
         agent_host.sendCommand(command)
         self.lastCommand = command
+        self.round += 1
         if self.log:
-            print("{} choose to: {}".format(self.name, command))
+            print("Round {} {} choose to: {}".format(self.round, self.name, command))
+
 
     def observe(self, worldstate, opponent_state):
         # update the observation
+
         if worldstate.number_of_observations_since_last_state > 0:
             state = json.loads(worldstate.observations[-1].text)
-            self.dataCollection['Life'] = state['Life']
-            self.dataCollection['XPos'] = state['XPos']
-            self.dataCollection['ZPos'] = state['ZPos']
+            if self.round <= 1:
+                self.observationFromPreviousMission['DamageTaken'] = state['DamageTaken']
+                self.observationFromPreviousMission['DamageDealt'] = state['DamageDealt']
+            else:
+                self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission['DamageTaken']
+                self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission['DamageDealt']
+                self.dataCollection['Life'] = state['Life']
+                self.dataCollection['XPos'] = state['XPos']
+                self.dataCollection['ZPos'] = state['ZPos']
         if opponent_state.number_of_observations_since_last_state > 0:
             opponent_state = json.loads(opponent_state.observations[-1].text)
             self.opponentDataCollection['Life'] = opponent_state['Life']
