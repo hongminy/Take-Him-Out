@@ -97,7 +97,7 @@ opponent = random_agent("Opponent",True)
 # clear Worldstate before start
 
 #---MainLoop------MainLoop------MainLoop------MainLoop------MainLoop------MainLoop---#
-round = 1
+
 
 # Loop until mission ends:
 while spectator_state.is_mission_running and agent_state.is_mission_running and opponent_state.is_mission_running:
