@@ -47,28 +47,34 @@ class basic_agent:
     def observe(self, worldstate, opponent_state):
         # update the observation
 
+        if self.round <= 1:
+            state = json.loads(worldstate.observations[-1].text)
+            self.observationFromPreviousMission['DamageTaken'] = state['DamageTaken']
+            self.observationFromPreviousMission['DamageDealt'] = state['DamageDealt']
+            self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission[
+                'DamageTaken']
+            self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission[
+                'DamageDealt']
+            return
+
         if worldstate.number_of_observations_since_last_state > 0:
             state = json.loads(worldstate.observations[-1].text)
-            if self.round <= 1:
-                self.observationFromPreviousMission['DamageTaken'] = state['DamageTaken']
-                self.observationFromPreviousMission['DamageDealt'] = state['DamageDealt']
-                self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission['DamageTaken']
-                self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission['DamageDealt']
-            else:
-                self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission['DamageTaken']
-                self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission['DamageDealt']
-                self.dataCollection['Life'] = state['Life']
-                self.dataCollection['XPos'] = state['XPos']
-                self.dataCollection['ZPos'] = state['ZPos']
+            self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission['DamageTaken']
+            self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission['DamageDealt']
+            self.dataCollection['Life'] = state['Life']
+            self.dataCollection['XPos'] = state['XPos']
+            self.dataCollection['ZPos'] = state['ZPos']
         if opponent_state.number_of_observations_since_last_state > 0:
-            opponent_state = json.loads(opponent_state.observations[-1].text)
-            self.opponentDataCollection['Life'] = opponent_state['Life']
-            self.opponentDataCollection['XPos'] = opponent_state['XPos']
-            self.opponentDataCollection['ZPos'] = opponent_state['ZPos']
+            state = json.loads(opponent_state.observations[-1].text)
+            self.opponentDataCollection['Life'] = state['Life']
+            self.opponentDataCollection['XPos'] = state['XPos']
+            self.opponentDataCollection['ZPos'] = state['ZPos']
 
         if self.log:
-            print("{} 's state: {}".format(self.name, self.dataCollection))
-            print("{} 's opponent: {}".format(self.name, self.opponentDataCollection))
+            if worldstate.number_of_observations_since_last_state > 0:
+                print("{} 's state: {}".format(self.name, self.dataCollection))
+            if opponent_state.number_of_observations_since_last_state > 0:
+                print("{} 's opponent: {}".format(self.name, self.opponentDataCollection))
 
 
 
