@@ -16,10 +16,16 @@ class basic_agent:
         self.log = log
         self.name = name
         self.observation = None
-        self.dataCollection = {'DamageTaken':0, 'DamageDealt':0, 'Life':0, 'XPos':0, 'ZPos':0}
+        self.dataCollection = {'DamageTaken':0, 'DamageDealt':0,
+                               'Life':0, 'XPos':0, 'ZPos':0,
+                               'DistanceToOpponent':0, 'Yaw':0, 'Round':0
+                               }
         self.opponentDataCollection = {'Life':0, 'XPos':0, 'ZPos':0}
-        self.observationFromPreviousMission = {'DamageTaken':0, 'DamageDealt':0}
-        self.round = 1
+        self.observationFromPreviousMission = {'DamageTaken':0,'DamageDealt':0,
+                                               'OpponentDamageTaken':0}
+
+        self.observationNum = 1
+        self.opponentObservationNum = 1
 
 
     def get_possible_actions(self):
@@ -34,11 +40,11 @@ class basic_agent:
         agent_host.sendCommand(command)
         self.lastCommand = command
         if self.log:
-            print("Round {}: {} choose to: {}".format(self.round, self.name, command))
-        self.round += 1
+            print("Round {}: {} choose to: {}".format(self.dataCollection['Round'], self.name, command))
+        self.dataCollection['Round'] += 1
 
     def log(self):
-        print("Round {}".format(self.round))
+        print("Round {}".format(self.dataCollection['Round']))
         print("{} 's state: {}\n".format(self.name, self.dataCollection))
 
         print("After considering his opponent's state: {}\n".format(self.opponentDataCollection))
@@ -47,25 +53,37 @@ class basic_agent:
     def observe(self, worldstate, opponent_state):
         # update the observation
 
-        if self.round <= 1:
-            state = json.loads(worldstate.observations[-1].text)
-            self.observationFromPreviousMission['DamageTaken'] = state['DamageTaken']
-            self.observationFromPreviousMission['DamageDealt'] = state['DamageDealt']
-            self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission[
-                'DamageTaken']
-            self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission[
-                'DamageDealt']
-            return
+        if self.observationNum<= 1 or self.opponentObservationNum <=1:
+            if worldstate.number_of_observations_since_last_state > 0:
+                state = json.loads(worldstate.observations[-1].text)
+                self.observationFromPreviousMission['DamageTaken'] = state['DamageTaken']
+                self.observationFromPreviousMission['DamageDealt'] = state['DamageDealt']
+                self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission[
+                    'DamageTaken']
+                self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission[
+                    'DamageDealt']
+            if opponent_state.number_of_observations_since_last_state > 0:
+                state = json.loads(opponent_state.observations[-1].text)
+                self.observationFromPreviousMission['OpponentDamageTaken'] = state['DamageTaken']
+
 
         if worldstate.number_of_observations_since_last_state > 0:
+            self.observationNum += 1
             state = json.loads(worldstate.observations[-1].text)
+            #print(state)
             self.dataCollection['DamageTaken'] = state['DamageTaken'] - self.observationFromPreviousMission['DamageTaken']
-            self.dataCollection['DamageDealt'] = state['DamageDealt'] - self.observationFromPreviousMission['DamageDealt']
             self.dataCollection['Life'] = state['Life']
             self.dataCollection['XPos'] = state['XPos']
             self.dataCollection['ZPos'] = state['ZPos']
+            self.dataCollection['Yaw'] = state['Yaw']
+            self.dataCollection['DistanceToOpponent'] = ((self.dataCollection['XPos']-\
+                                                        self.opponentDataCollection['XPos'])**2 + (
+                self.dataCollection['ZPos'] - self.opponentDataCollection['ZPos'] **2))**0.5
+
         if opponent_state.number_of_observations_since_last_state > 0:
+            self.opponentObservationNum += 1
             state = json.loads(opponent_state.observations[-1].text)
+            self.dataCollection['DamageDealt'] = state['DamageTaken'] - self.observationFromPreviousMission['OpponentDamageTaken']
             self.opponentDataCollection['Life'] = state['Life']
             self.opponentDataCollection['XPos'] = state['XPos']
             self.opponentDataCollection['ZPos'] = state['ZPos']
