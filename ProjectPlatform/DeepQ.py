@@ -1,31 +1,3 @@
-# from keras.models import Sequential
-# from keras.layers import Dense, Dropout, Conv2D, MaxPool2D, Activation, Flatten
-# from keras.callbacks import TensorBoard
-# from keras.optimizers import Adam
-# from collections import deque
-
-# class DQNAgent:
-#     def create_model(self):
-#         model = Sequential()
-
-#         model.add(Conv2D(256, (3, 3), input_shape=env.OBSERVATION_SPACE_VALUES))  # OBSERVATION_SPACE_VALUES = (10, 10, 3) a 10x10 RGB image.
-#         model.add(Activation('relu'))
-#         model.add(MaxPooling2D(pool_size=(2, 2)))
-#         model.add(Dropout(0.2))
-
-#         model.add(Conv2D(256, (3, 3)))
-#         model.add(Activation('relu'))
-#         model.add(MaxPooling2D(pool_size=(2, 2)))
-#         model.add(Dropout(0.2))
-
-#         model.add(Flatten())  # this converts our 3D feature maps to 1D feature vectors
-#         model.add(Dense(64))
-
-#         model.add(Dense(env.ACTION_SPACE_SIZE, activation='linear'))  # ACTION_SPACE_SIZE = how many choices (9)
-#         model.compile(loss="mse", optimizer=Adam(lr=0.001), metrics=['accuracy'])
-#         return model
-
-
 from keras.layers import Dense, Activation
 from keras.models import Sequential, load_model
 from keras.optimizers import Adam
@@ -84,7 +56,7 @@ def build_dqn(lr, n_actions, input_dims, fc1_dims, fc2_dims):
 
 class Agent(object):
     def __init__(self, alpha, gamma, n_actions, epsilon, batch_size,
-                 input_dims, epsilon_dec=0.996,  epsilon_end=0.01,
+                 input_dims, epsilon_dec=0.999,  epsilon_end=0.01,
                  mem_size=1000000, fname='ddqn_model.h5', replace_target=100):
         self.action_space = [i for i in range(n_actions)]
         self.n_actions = n_actions
@@ -143,13 +115,13 @@ class Agent(object):
                 self.update_network_parameters()
 
     def update_network_parameters(self):
-        self.q_target.model.set_weights(self.q_eval.model.get_weights())
+        self.q_target.set_weights(self.q_eval.get_weights())
 
-    def save_model(self):
-        self.q_eval.save(self.model_file)
+    def save_model(self,filename):
+        self.q_eval.save(filename)
 
-    def load_model(self):
-        self.q_eval = load_model(self.model_file)
+    def load_model(self,filename):
+        self.q_eval = load_model(filename)
         # if we are in evaluation mode we want to use the best weights for
         # q_target
         if self.epsilon == 0.0:
