@@ -14,7 +14,6 @@ import gym
 def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, role, expId):
     used_attempts = 0
     max_attempts = 5
-    print("Calling startMission for role", role)
     while True:
         try:
             # Attempt start:
@@ -23,26 +22,26 @@ def safeStartMission(agent_host, my_mission, my_client_pool, my_mission_record, 
         except MalmoPython.MissionException as e:
             errorCode = e.details.errorCode
             if errorCode == MalmoPython.MissionErrorCode.MISSION_SERVER_WARMING_UP:
-                print("Server not quite ready yet - waiting...")
+                #print("Server not quite ready yet - waiting...")
                 time.sleep(2)
             elif errorCode == MalmoPython.MissionErrorCode.MISSION_INSUFFICIENT_CLIENTS_AVAILABLE:
-                print("Not enough available Minecraft instances running.")
+                #print("Not enough available Minecraft instances running.")
                 used_attempts += 1
                 if used_attempts < max_attempts:
-                    print("Will wait in case they are starting up.", max_attempts - used_attempts, "attempts left.")
+                    #print("Will wait in case they are starting up.", max_attempts - used_attempts, "attempts left.")
                     time.sleep(2)
             elif errorCode == MalmoPython.MissionErrorCode.MISSION_SERVER_NOT_FOUND:
-                print("Server not found - has the mission with role 0 been started yet?")
+                #print("Server not found - has the mission with role 0 been started yet?")
                 used_attempts += 1
                 if used_attempts < max_attempts:
-                    print("Will wait and retry.", max_attempts - used_attempts, "attempts left.")
+                    #print("Will wait and retry.", max_attempts - used_attempts, "attempts left.")
                     time.sleep(2)
             else:
-                print("Other error:", e.message)
-                print("Waiting will not help here - bailing immediately.")
+                #print("Other error:", e.message)
+                #print("Waiting will not help here - bailing immediately.")
                 exit(1)
         if used_attempts == max_attempts:
-            print("All chances used up - bailing now.")
+            #print("All chances used up - bailing now.")
             exit(1)
 
 
@@ -113,6 +112,7 @@ class SkipEnv(gym.Wrapper):
         obs = self.env.reset()
         self._obs_buffer.append(obs)
         return obs
+        
 
 class PreProcessFrame(gym.ObservationWrapper):
     def __init__(self, env=None):
