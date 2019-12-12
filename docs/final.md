@@ -15,9 +15,19 @@ title: Final Report
 <!-- blank line -->
   
 ## Project Summary
-Our project is around a Minecraft fireball battle game that we developed. We really dig deep into configuring this dodgeball battle inside Minecraft including setting projectile entity configuration, command blocks, and Minecraft in-game logic.
+Our project is around a Minecraft fireball battle game that we developed. We configured the game ourselves following our own imaginations and using lots of ideas from other classical games like PONG and the mage battle from a map in Warcraft III. 
 
-The arena is a 20 x 20 stone field with walls and each agent has an unlimited supply of fireballs. The rule of the game is very simple, there are two players inside the arena. Whoever defeats the opponent using Fireball will win the game.
+
+<img src="Pictures/combined.png" alt="Warcraft III" width="953.4" height="315">
+---------------------
+<img src="Pictures/Pong.png" alt="Warcraft III" width="640" height="360">
+
+
+Setting up this enviornment inside Minecraft along including setting projectile entity configuration, command blocks, and Minecraft in-game logic.
+
+The Final Training arena is a 10 x 10 square field with four walls with height 1 as its boarders. We'll discuss how did we choose the proper configuration of our arena and why it's important.
+
+
 
 ![Arena](Arena.png)
 
@@ -27,6 +37,11 @@ We made a random agent that pick eligible acts randomly.
 We modified the game logistics to make throwing a fireball possible.
 
 ## Approaches
+
+
+
+
+
 To make the training process easier, we restrict the possible actions for each agent, inside the game, the only valid actions are: moving the field of view to the left or the right, move forward or backward, and throw fireballs. To further zone in our task, we set the persecpt of our agent to have all general status of both itself and the opponent. 
 
 The main algorithm that we use for training is Q-learning reinforcement learning. the strategy for our training is quite curriculum: 
