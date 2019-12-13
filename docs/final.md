@@ -26,7 +26,7 @@ However, humans perceive the information from the game using their eyes, we deci
 
 <figure>
   <img src="Pictures/fireball.png" alt="Not good for conv net" width="929.7" height="279.9"/>
-  <figcaption>asdjaksjdlakdjlaskjdlakjdlajkdljakjslaj</figcaption>
+  <figcaption style="text-align:center">asdjaksjdlakdjlaskjdlakjdlajkdljakjslaj</figcaption>
 </figure>
 
 
