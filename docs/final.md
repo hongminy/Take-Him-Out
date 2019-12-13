@@ -24,8 +24,10 @@ To step up and make the environment more like a real video game, we restrict the
 
 However, humans perceive the information from the game using their eyes, we decided to simplify our problem a little bit by inputting the numeric information directly to our agent instead of using another step of processing information from the images of the frames during the gameplay. This not only considerablely reduces our training time, since we wouldn't need to train a convolutional neural network to acquire data visually, but also making the implementation viable by avoiding working with the extremely distorting visual noise while throwing the fireballs. 
 
-
-<div style="width:image width px; font-size:80%; text-align:center;"><img src="Pictures/fireball.png" alt="Not good for conv net" width="929.7" height="279.9" style="padding-bottom:0.5em;" />This is my caption</div>
+<figure>
+  <img src="Pictures/fireball.png" alt="Not good for conv net" width="929.7" height="279.9"/>
+  <figcaption>asdjaksjdlakdjlaskjdlakjdlajkdljakjslaj</figcaption>
+</figure>
 
 
 The Final Training arena is a 10 x 10 square field with four walls with height 1 as its boarders. We'll discuss how did we choose the proper configuration of our arena and why it's important.
