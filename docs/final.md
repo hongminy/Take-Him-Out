@@ -13,15 +13,15 @@ title: Final Report
 <!-- blank line -->
   
 ## Project Summary
-Our project is around a Minecraft fireball battle game that we developed. We configured the game ourselves following our own imaginations and using lots of ideas from other classic games like PONG and the mage battle from a map in Warcraft III. The reason why we choose to set up this environment is that we thought this is more like a real video game that we used to play daily and competitively, so this makes more sense to implement artificial intelligence on. 
+Our project is around a Minecraft fireball battle game that we developed. We configured the game ourselves following our own imaginations and using lots of ideas from other classic games like PONG and the mage battle from a map in Warcraft III.(Shown in Fig.1 and Fig.2) The reason why we choose to set up this environment is that we thought this is more like a real video game that we used to play daily and competitively, so this makes more sense to implement artificial intelligence on. 
 <p>
 
 
 </p> 
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/combined.png" alt="Warcraft III" width="953.4" height="315"/>
-  <figcaption style="text-align:center">
-  	Warcrat III maps that inspired our fireball game
+  <figcaption style="text-align:center; color:blue">
+  	Fig.1 Warcrat III maps that inspired our fireball game
   </figcaption>
 </figure>
 <p>
@@ -30,8 +30,8 @@ Our project is around a Minecraft fireball battle game that we developed. We con
 </p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/Pong.png" alt="Pong" width="640" height="300"/>
-  <figcaption style="text-align:center">
-  	The first two-player competitive video game
+  <figcaption style="text-align:center; color:blue">
+  	Fig.2 The first two-player competitive video game
   </figcaption>
 </figure>
 <p>
@@ -39,40 +39,51 @@ Our project is around a Minecraft fireball battle game that we developed. We con
 
 </p>
 
-To step up and make the environment more like a real video game, we restrict the actions our agent can take to some very general and non-trivial ones. The set of actions our agent can take consists of turning the head left and right (mouse movement), move forward and backward (W, S key), move left and right horizontally (A, S key) and throw the fireballs (mouse right-click). Given that all of our actions are continuous, I think they together make a perfect representation of how an actual human player would use mouse and keyboard to control the character, which sets our goal of the project to create an agent and learn how to play a game humanly, and would cause lots of challenges along the way. 
+To step up and make the environment more like a real video game, we restrict the actions our agent can take to some very general and non-trivial ones. The set of actions our agent can take consists of turning the head left and right (mouse movement), move forward and backward (W, S key), move left and right horizontally (A, S key) and throw the fireballs (mouse right-click). Given that all of our actions are continuous, I think they together make a perfect representation of how an actual human player would use mouse and keyboard to control the character, which sets our goal of the project to create an agent and learn how to play a game humanly, and would cause lots of challenges along the way. (Animated in Fig.3)
+<p>
 
+
+</p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/Movement_demo.gif" alt="Movement demo" width="600" height="338"/>
-  <figcaption style="text-align:center">
-  	The set of movements allowed for our agent
+  <figcaption style="text-align:center; color:blue">
+  	Fig.3 The set of movements allowed for our agent
   </figcaption>
 </figure>
+<p>
 
-However, humans perceive the information from the game using their eyes, we decided to simplify our problem a little bit by inputting the numeric information directly to our agent instead of using another step of processing information from the images of the frames during the gameplay. This not only considerablely reduces our training time, since we wouldn't need to train a convolutional neural network to acquire data visually, but also making the implementation viable by avoiding working with the extremely distorting visual noise while throwing the fireballs. 
+
+</p>
+However, humans perceive the information from the game using their eyes, we decided to simplify our problem a little bit by inputting the numeric information directly to our agent instead of using another step of processing information from the images of the frames during the gameplay. This not only considerablely reduces our training time, since we wouldn't need to train a convolutional neural network to acquire data visually, but also making the implementation viable by avoiding working with the extremely distorting visual noise while throwing the fireballs. (Fig.4)
 <p>
 
 
 </p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/fireball.png" alt="Not good for conv net" width="929.7" height="279.9"/>
-  <figcaption style="text-align:center">
-  	When being thrown, the fireball completely covers up the screen
+  <figcaption style="text-align:center; color:blue">
+  	Fig.4 When being thrown, the fireball completely covers up the screen
   </figcaption>
 </figure>
 <p>
 
 
 </p>
-The Final Training arena is a 10 x 10 square field with four walls with height 1 as its boarders. We'll discuss how did we choose the proper configuration of our arena and why it's important.
+The Final Training arena is a 10 x 10 square field with four walls with height 1 as its boarders.(Fig.5) We'll discuss how did we choose the proper configuration of our arena and why it's important.
+<p>
 
-## Need a Picture to show the arena here !!!
+
+</p>
+<figure style="text-align:center; margin-left: auto; margin-right: auto;">
+  <img src="Pictures/Arena.png" alt="Our simplfied arena" width="511.2" height="530"/>
+  <figcaption style="text-align:center; color:blue">
+  	Fig.5 Our finallized arena
+  </figcaption>
+</figure>
+<p>
 
 
-We made two of the maps that would be our future arena to train our AI.
-We wrote a basic agent that work as the parent class of other more complicated agents.
-We made a random agent that pick eligible acts randomly.
-We modified the game logistics to make throwing a fireball possible.
-
+</p>
 ## Approaches
 
 
