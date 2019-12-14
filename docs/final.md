@@ -9,7 +9,7 @@ title: Final Report
 
 
 <!-- blank line -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/i7fdP1txuT0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe align = "middle" width="672" height="378" src="https://www.youtube.com/embed/i7fdP1txuT0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <!-- blank line -->
   
 ## Project Summary
