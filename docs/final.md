@@ -122,7 +122,7 @@ The idea of "Replay Memory" is also introduced in our implementation, before the
 
 To Finallize our training setup, we used a python library called Keras RL that utilize tensorflow as background to make the 2 DQN networks. The type of our networks is Sequential(Basically a Multilayer Perceptron network), because we don't need to use any convolution or pooling layer to process images. The configuration of these 2 nets are identical, both having 2 layers of 256 perceptrons.
 
-
+Curriculum learning is also used while training. At first our goal is to train the agent so that the agent can play against a moving target, so we set up the environment to let the agent play against a still, non-monving target. However, as we carried out the training, the agent didn't perform good enough to step up the difficulty, so we sticked to training and evaluating the performance against a still target. 
 
 ## Evaluation
 As a baseline, we expect our agent at least to perform rationally as a player in the arena we made, for example, attacking when the opponent is close, jumping to clear the obstacles and moving around normally. After an extended training and having a better designed Q-table, we want our agent to create a somewhat challenging combat environment for the other player. This involves the agent to be tactical, aggressive or conservative depends on its situation, good at using items, and well worn for combat. 
