@@ -128,7 +128,9 @@ Curriculum learning is also used while training. At first our goal is to train t
 Evaluation Plans: <br />
 1) Compare the average scores and standard deviation between different setups<br />
 2) Arrange an arena in which agents fight each other and count the win rate
-                  
+<p>
+
+               
 </p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/Avg_score_excel.png" alt="Pong" width="997" height="132"/>
@@ -137,12 +139,16 @@ Evaluation Plans: <br />
   </figcaption>
 </figure>
 <p>
- 
+
+
+</p>
 Interpretation of Fig.1: As we can see here the original setup with use coordinates of two agents as training state starts with a higher score in the beginning, but failed to reach scores higher than 163 and overfits quickly. Therefore we abandon  this setup after seeing scores drops under 160 and having the trend to drop further. It has higher standard deviation than other two non-random agents, that was caused by the high epislon = 0.3 fix. It performs more like a random agent than the other two. 
 
 Setup No.2 has a better performance than No.1 because of the decaying epislon and better implementaion, using vector instead of coordinates as training state which helps the agent progress faster and reduce the size of state from 10 to 7. Decaying epislon also reduce the standard deviation. 
 
 Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous two agents. The starting epislon was lower too. So it can get the higher scores in less episodes.
+<p>
+
 
 </p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
@@ -152,8 +158,9 @@ Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous t
   </figcaption>
 </figure>
 <p>
-  
- </p>
+
+
+</p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/Original_score_dots.png" alt="Pong" width="1036" height="355"/>
   <figcaption style="text-align:center; color:blue">
@@ -161,6 +168,7 @@ Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous t
   </figcaption>
 </figure>
 <p>
+
 
 </p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
@@ -170,8 +178,9 @@ Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous t
   </figcaption>
 </figure>
 <p>
-  
- </p>
+
+
+</p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/V_score_dots.png" alt="Pong" width="1036" height="355"/>
   <figcaption style="text-align:center; color:blue">
@@ -179,7 +188,8 @@ Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous t
   </figcaption>
 </figure>
 <p>
-  
+
+
 </p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/V_new_avg.png" alt="Pong" width="1036" height="355"/>
@@ -188,8 +198,9 @@ Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous t
   </figcaption>
 </figure>
 <p>
-  
- </p>
+
+
+</p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/V_new_score_dots.png" alt="Pong" width="1036" height="355"/>
   <figcaption style="text-align:center; color:blue">
@@ -197,9 +208,14 @@ Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous t
   </figcaption>
 </figure>
 <p>
-  
+
+
+</p>
 2) Agents fight against each other
- </p>
+ <p>
+
+
+</p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/Agents_against_each_other.png" alt="Pong" width="732" height="104"/>
   <figcaption style="text-align:center; color:blue">
@@ -207,9 +223,13 @@ Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous t
   </figcaption>
 </figure>
 <p>
- <br />
-  <br />
+
+
+</p>
+<br />
+<br />
 The Vector Setup 1 has an overall better performance
+
 
 
 ## References
