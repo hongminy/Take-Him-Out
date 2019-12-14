@@ -129,21 +129,22 @@ As a baseline, we expect our agent at least to perform rationally as a player in
 
 
 ## References
+<a href="url">link text</a>
 
-Reinforcement Learning - Introducing Goal Oriented Intelligence with deeplizard: https://deeplizard.com/learn/video/nyjbcRQ-uQ8
+Reinforcement Learning - Introducing Goal Oriented Intelligence with deeplizard: <a href="https://deeplizard.com/learn/video/nyjbcRQ-uQ8">https://deeplizard.com/learn/video/nyjbcRQ-uQ8</a>
 
-Deep Q Learning is Simple with Keras - Machine Learning with Phil: https://www.youtube.com/watch?v=5fHngyN8Qhw
+Deep Q Learning is Simple with Keras - Machine Learning with Phil: <a href="https://www.youtube.com/watch?v=5fHngyN8Qhw">https://www.youtube.com/watch?v=5fHngyN8Qhw</a>
 
-Deep Reinforcement Learning for Keras: https://github.com/keras-rl/keras-rl
+Deep Reinforcement Learning for Keras: <a href="https://github.com/keras-rl/keras-rl">https://github.com/keras-rl/keras-rl</a>
 
-Tensorflow GPU acceleration: https://www.tensorflow.org/guide/gpu
+Tensorflow GPU acceleration: <a href="https://www.tensorflow.org/guide/gpu">https://www.tensorflow.org/guide/gpu</a>
 
-Nvidia CUDA installation: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
+Nvidia CUDA installation: <a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html">https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html</a>
 
-Malmo Class references: http://microsoft.github.io/malmo/0.30.0/Documentation/index.html
+Malmo Class references: <a href="http://microsoft.github.io/malmo/0.30.0/Documentation/index.html">http://microsoft.github.io/malmo/0.30.0/Documentation/index.html</a>
 
-Malmo XML Schema Documentation: http://microsoft.github.io/malmo/0.30.0/Schemas/Mission.html
+Malmo XML Schema Documentation: <a href="http://microsoft.github.io/malmo/0.30.0/Schemas/Mission.html">http://microsoft.github.io/malmo/0.30.0/Schemas/Mission.html</a>
 
-Minecraft command references: https://minecraft.gamepedia.com/Commands
+Minecraft command references: <a href="https://minecraft.gamepedia.com/Commands">https://minecraft.gamepedia.com/Commands</a>
 
-How to throw fireballs in Minecraft: https://www.youtube.com/watch?v=qYDetuX3cM8
+How to throw fireballs in Minecraft: <a href="https://www.youtube.com/watch?v=qYDetuX3cM8">https://www.youtube.com/watch?v=qYDetuX3cM8</a>
