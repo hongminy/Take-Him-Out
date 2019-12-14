@@ -129,7 +129,6 @@ As a baseline, we expect our agent at least to perform rationally as a player in
 
 
 ## References
-<a href="url">link text</a>
 
 Reinforcement Learning - Introducing Goal Oriented Intelligence with deeplizard: <a href="https://deeplizard.com/learn/video/nyjbcRQ-uQ8">https://deeplizard.com/learn/video/nyjbcRQ-uQ8</a>
 
