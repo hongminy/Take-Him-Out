@@ -9,7 +9,7 @@ title: Final Report
 
 
 <!-- blank line -->
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/i7fdP1txuT0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <!-- blank line -->
   
 ## Project Summary
@@ -128,3 +128,22 @@ Curriculum learning is also used while training. At first our goal is to train t
 As a baseline, we expect our agent at least to perform rationally as a player in the arena we made, for example, attacking when the opponent is close, jumping to clear the obstacles and moving around normally. After an extended training and having a better designed Q-table, we want our agent to create a somewhat challenging combat environment for the other player. This involves the agent to be tactical, aggressive or conservative depends on its situation, good at using items, and well worn for combat. 
 
 
+## References
+
+Reinforcement Learning - Introducing Goal Oriented Intelligence with deeplizard: https://deeplizard.com/learn/video/nyjbcRQ-uQ8
+
+Deep Q Learning is Simple with Keras - Machine Learning with Phil: https://www.youtube.com/watch?v=5fHngyN8Qhw
+
+Deep Reinforcement Learning for Keras: https://github.com/keras-rl/keras-rl
+
+Tensorflow GPU acceleration: https://www.tensorflow.org/guide/gpu
+
+Nvidia CUDA installation: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
+
+Malmo Class references: http://microsoft.github.io/malmo/0.30.0/Documentation/index.html
+
+Malmo XML Schema Documentation: http://microsoft.github.io/malmo/0.30.0/Schemas/Mission.html
+
+Minecraft command references: https://minecraft.gamepedia.com/Commands
+
+How to throw fireballs in Minecraft: https://www.youtube.com/watch?v=qYDetuX3cM8
