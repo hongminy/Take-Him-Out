@@ -125,11 +125,14 @@ To Finallize our training setup, we used a python library called Keras RL that u
 Curriculum learning is also used while training. At first our goal is to train the agent so that the agent can play against a moving target, so we set up the environment to let the agent play against a still, non-monving target. However, as we carried out the training, the agent didn't perform good enough to step up the difficulty, so we sticked to training and evaluating the performance against a still target. 
 
 ## Evaluation
+Evaluation Plans: 1) Compare the average scores and standard deviation between different setups
+                  2) Arrange an arena in which agents fight each other and count the win rate
+                  
 </p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
   <img src="Pictures/Avg_score_excel.png" alt="Pong" width="997" height="132"/>
   <figcaption style="text-align:center; color:blue">
-  	Fig.1 The average scores with different setups in different stages
+  	Fig.1 The average scores against static opponent with different setups in different stages
   </figcaption>
 </figure>
 <p>
