@@ -201,7 +201,7 @@ Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous t
 2) Agents fight against each other
  </p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
-  <img src="Pictures/V_new_score_dots.png" alt="Pong" width="732" height="104"/>
+  <img src="Pictures/Agents_against_each_other.png" alt="Pong" width="732" height="104"/>
   <figcaption style="text-align:center; color:blue">
   	Fig.8 Agents against each other
   </figcaption>
