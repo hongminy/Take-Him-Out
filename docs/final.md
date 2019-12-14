@@ -69,7 +69,8 @@ However, humans perceive the information from the game using their eyes, we deci
 
 
 </p>
-The Final Training arena is a 10 x 10 square field with four walls with height 1 as its boarders.(Fig.5) We'll discuss how did we choose the proper configuration of our arena and why it's important.
+The Final Training arena is a 10 x 10 square field with four walls with height 1 as its boarders.(Fig.5) After setting up the environment initially, there were lots of small changes that we had to make to the map, which turned out to be crutial along the way. For example, many changes were made in order to work with the fireballs. At first, the height of our walls are 4 blocks(both players are not able to see outside the arena). However if the agent releases the fireball too close to one of the walls, the speed of the fireball projectiles would be set to 0, resulting the fireballs not moving and be treated as the ones that Mincraft monsters released, which will damage the agent that throws those fireballs. To deal with that, we made the walls have only heights of 1, and the fireball would fly off the arena even if it's released close to a wall. 
+We also reduced the size of the arena from its original size 20 x 20. After spending a few days training in a 20 x 20 map, we barely reached the 1000 episode mark. We realized that the high epsilon at the early stage, paring with a very large map would take us ages to train, since the agent rarely hit its target causing a long episode time. All above is the process of us coming up with the idea and setting up and finalizing the Minecraft environment that we used to train our agent.
 <p>
 
 
@@ -85,18 +86,22 @@ The Final Training arena is a 10 x 10 square field with four walls with height 1
 
 </p>
 ## Approaches
+Because we decided to have a continuous state space and action space, it would be implausible for us to use Tabular Q-Learning Reinforcement Learning to train our agent. The iterative process of computing and updating Q-values for each state-action pair in a large/continuous state space becomes computationally inefficient and perhaps infeasible due to the computational resources and time this may take. 
+Instead, we chose to use Deep-Q Reinforcement Learning:
+<p>
 
 
+</p>
+<figure style="text-align:center; margin-left: auto; margin-right: auto;">
+  <img src="Pictures/Bellman.png" alt="Bellman Optimality Equation" width="594" height="205.8"/>
+  <figcaption style="text-align:center; color:blue">
+    Fig.6 Bellman Optimality Equation
+  </figcaption>
+</figure>
+<p>
 
 
-
-To make the training process easier, we restrict the possible actions for each agent, inside the game, the only valid actions are: moving the field of view to the left or the right, move forward or backward, and throw fireballs. To further zone in our task, we set the persecpt of our agent to have all general status of both itself and the opponent. 
-
-The main algorithm that we use for training is Q-learning reinforcement learning. the strategy for our training is quite curriculum: 
-
-In the beginning, we simply trained one random exploring agent to shoot fireballs to a non-moving target. And then, we inherited the Q table to the next generation where the target is making random movements The demo video shows the case that we apply the model that we trained from a random moving target to both sides of the battle. 
-
-![Moves](Moves.png)
+</p>
 
 ## Evaluation
 As a baseline, we expect our agent at least to perform rationally as a player in the arena we made, for example, attacking when the opponent is close, jumping to clear the obstacles and moving around normally. After an extended training and having a better designed Q-table, we want our agent to create a somewhat challenging combat environment for the other player. This involves the agent to be tactical, aggressive or conservative depends on its situation, good at using items, and well worn for combat. 
