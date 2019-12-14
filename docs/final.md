@@ -88,7 +88,7 @@ We also reduced the size of the arena from its original size 20 x 20. After spen
 </p>
 ## Approaches
 Because we decided to have a continuous state space and action space, it would be implausible for us to use Tabular Q-Learning Reinforcement Learning to train our agent. The iterative process of computing and updating Q-values for each state-action pair in a large/continuous state space becomes computationally inefficient and perhaps infeasible due to the computational resources and time this may take. 
-Instead, we chose to use Deep-Q Reinforcement Learning:
+Instead, we chose to use Deep-Q Reinforcement Learning. With identical steps to tabular Q-learning, Deep-Q learning subsitude the part where the algorithm acquire Q-value from the Q-table to using neural networks to approximate a Q-value to the current state-action pair. Because Deep-Q learing doesn't have a actual Q-table stored in memory, Deep-Q learning is far less memory-consuming than Tabular Q-learning but might require more time to train. As the training progresses, the neural network should become better and better at approximating the Q-value by a given state-action pair(even continous ones).  
 <p>
 
 
