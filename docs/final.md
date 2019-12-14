@@ -155,7 +155,7 @@ Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous t
   
  </p>
 <figure style="text-align:center; margin-left: auto; margin-right: auto;">
-  <img src="Pictures/Original_avg.png" alt="Pong" width="1728" height="593"/>
+  <img src="Pictures/Original_score_dots.png" alt="Pong" width="1728" height="593"/>
   <figcaption style="text-align:center; color:blue">
   	Fig.3 Coordinate Setup score dot plots
   </figcaption>
