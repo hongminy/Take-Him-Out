@@ -144,6 +144,14 @@ Setup No.2 has a better performance than No.1 because of the decaying epislon an
 
 Setup No.3 has a larger learning rate of 0.01 instead of 0.005 as the previous two agents. The starting epislon was lower too. So it can get the higher scores in less episodes.
 
+</p>
+<figure style="text-align:center; margin-left: auto; margin-right: auto;">
+  <img src="Pictures/Original_avg.png" alt="Pong" width="1728" height="589"/>
+  <figcaption style="text-align:center; color:blue">
+  	Fig.2 Coordinate Setup avg score plot
+  </figcaption>
+</figure>
+<p>
 
 
 
